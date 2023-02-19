@@ -1,0 +1,220 @@
+@import "@cdc/core/styles/base";
+@import "@cdc/core/styles/heading-colors";
+@import "variables";
+@import "editor-panel";
+@import "filters";
+
+.cdc-map-outer-container {
+  position: relative;
+  display: flex; // Needed for the main content
+  .loading > div.la-ball-beat {
+    margin-top: 20%;
+  }
+  @include breakpointClass(md) {
+    .map-container.modal-background::before {
+      border-bottom: $lightGray 1px solid;
+      margin-bottom: -1px;
+      bottom: 1px;
+    }
+  }
+}
+
+.cdc-map-inner-container {
+  @import "./tooltips";
+  @import "./map";
+  @import "./sidebar";
+  @import "./datatable";
+  flex-grow: 1;
+  text-rendering: geometricPrecision;
+  color: #202020;
+  border: 0;
+  text-align: left;
+  max-width: 100%;
+  .btn {
+    padding: .375em .75em;
+    border-radius: .3em;
+  }
+
+  header.hidden {
+    display: none;
+  }
+
+  .no-border {
+    border: 0;
+  }
+
+  div.map-title {
+    margin: 0;
+    color: #fff;
+    font-size: 1.1em;
+    position: relative;
+    em {
+      font-style: italic;
+    }
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  div.map-title:not(:empty) {
+    margin: 0 !important;
+    padding: .6em .8em;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+  }
+
+  .map-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    &.modal-background {
+      position: relative;
+      &::before {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: -1em;
+        right: -1em;
+        bottom: 0;
+        background: rgba(0,0,0,.05);
+        z-index: 7;
+      }
+      .modal-content {
+        background: #fff;
+        position: absolute;
+        z-index: 8;
+        top: 50%;
+        left: 50%;
+        display: flex;
+        flex-direction: row;
+        border-radius: 5px;
+        transform: translate(-50%, -50%);
+        border: rgba(0, 0, 0, 0.3) 1px solid;
+        box-shadow: rgba(0, 0, 0, 0.2) 3px 3px 7px;
+        opacity: 1;
+        line-height: 1.4em;
+        font-size: 1rem;
+        border-radius: 4px;
+        min-width: 250px;
+        padding: 16px 40px 16px 20px;
+        width: auto;
+        .content {
+          flex-grow: 1;
+        }
+        .legend-item {
+          margin-right: .75em;
+          margin-top: 3px;
+          flex-shrink: 0;
+        }
+        @include breakpointClass(sm) {
+          transform: translate(-50%, -100%);
+        }
+        @include breakpointClass(md) {
+          transform: translate(-50%, -120%);
+        }
+        @include breakpointClass(lg) {
+          font-size: .9em;
+          min-width: 300px;
+          .legend-item {
+            height: 1.3em;
+            width: 1.3em;
+          }
+        }
+        strong {
+          font-weight: 600;
+          font-size: 1.2em;
+        }
+        .modal-close {
+          position: absolute;
+          right: 20px;
+          top: 18px;
+          cursor: pointer;
+          width: 1em;
+        }
+        span.navigation-link {
+          text-decoration: underline;
+          cursor: pointer;
+          color: #075290;
+          display: flex;
+          svg {
+            display: inline-block;
+            max-width: 13px;
+          }
+        }
+        &.capitalize p {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  p.subtext {
+    font-size: .9em;
+    padding: 0 .8em .8em;
+    em {
+      font-style: italic;
+    }
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  span.legend-item {
+    margin-right: 5px;
+    border-radius: 300px;
+    vertical-align: middle;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    min-width: 1em;
+    min-height: 1em;
+    max-width: 1em;
+    max-height: 1em;
+    border: rgba(0,0,0,.3) 1px solid;
+  }
+
+  .navigation-menu {
+    background: #fff;
+    position: relative;
+    line-height: 1.3em;
+    padding: 1em;
+    z-index: 6;
+    width: 100%;
+    border-top: $lightGray 1px solid;
+    label {
+      flex-grow: 1;
+      > div.select-heading {
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-bottom: .75em;
+      }
+    }
+    form {
+      max-width: 400px;
+      display: flex;
+      align-items: flex-end;
+    }
+    select {
+      font-size: 1.2em;
+      display: inline-block;
+      vertical-align: top;
+      width: 100%;
+    }
+    input {
+      color: #fff;
+      font-weight: 700;
+      padding: .4em .65em;
+      font-size: .9em;
+      border: 0;
+      display: inline-block;
+      border-radius: 7px;
+      margin-left: .5em;
+      cursor: pointer;
+    }
+  }
+
+  [tabIndex]:focus {
+    outline-color: rgb(0, 95, 204)
+  }
+
+}
